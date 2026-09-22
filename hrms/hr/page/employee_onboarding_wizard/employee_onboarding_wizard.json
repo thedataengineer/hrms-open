@@ -1,0 +1,31 @@
+{
+ "content": null,
+ "creation": "2026-09-21 20:52:20.528520",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": null,
+ "idx": 0,
+ "modified": "2026-09-21 20:52:20.528520",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "employee-onboarding-wizard",
+ "owner": "Administrator",
+ "page_name": "Onboard New Employee",
+ "restrict_to_domain": null,
+ "roles": [
+  {
+   "role": "HR Manager"
+  },
+  {
+   "role": "HR User"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Onboard New Employee"
+}

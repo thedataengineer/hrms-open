@@ -1,0 +1,165 @@
+// Focus "Onboard New Employee" wizard (ADHD-014).
+//
+// Every class here is prefixed adhd-onb- (never the bare adhd-wizard-* used by the ERPNext Focus layer's
+// guided-save banner, erpnext/public/js/adhd/adhd_form_wizard.js) so the two unrelated widgets never pick up
+// each other's rules through "body.adhd-mode .adhd-wizard-*" style selectors.
+//
+// The layout itself (one step per screen, calm spacing, a visible step count) is not gated on Focus mode:
+// the wizard works the same whether Focus mode is on or off. `.adhd-mode-on` only adjusts colour accents.
+
+.adhd-onboarding-wizard {
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 12px 4px 40px;
+
+	.adhd-onb-header {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		background: var(--fg-color, var(--card-bg));
+		padding: 8px 0 12px;
+		margin-bottom: 16px;
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.adhd-onb-progress {
+		width: 100%;
+		height: 6px;
+		border-radius: var(--border-radius);
+		accent-color: var(--primary);
+		margin-bottom: 8px;
+	}
+
+	.adhd-onb-step-label {
+		font-size: var(--text-md);
+		font-weight: 600;
+		color: var(--text-color);
+	}
+
+	.adhd-onb-errors {
+		background: var(--red-50, #fdeceb);
+		border-left: 4px solid var(--red-500);
+		border-radius: var(--border-radius);
+		padding: 10px 14px;
+		margin-bottom: 14px;
+
+		.adhd-onb-error-list {
+			margin: 0;
+			padding-left: 18px;
+			color: var(--red-700, var(--red-600));
+		}
+
+		.adhd-onb-create-error p {
+			margin: 0 0 8px;
+			color: var(--red-700, var(--red-600));
+		}
+	}
+
+	.adhd-onb-body {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.adhd-onb-form {
+		.form-control {
+			max-width: 420px;
+		}
+	}
+
+	.adhd-onb-hint {
+		color: var(--text-muted);
+		font-size: 0.85rem;
+		margin: 0 0 6px;
+	}
+
+	.adhd-onb-skip {
+		align-self: flex-start;
+	}
+
+	.adhd-onb-education-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.adhd-onb-education-row {
+		display: grid;
+		grid-template-columns: 1.2fr 1.4fr 0.6fr 1fr auto;
+		gap: 8px;
+		align-items: center;
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.adhd-onb-education-add {
+		align-self: flex-start;
+	}
+
+	.adhd-onb-summary-preview,
+	.adhd-onb-summary-heading {
+		margin-top: 4px;
+	}
+
+	.adhd-onb-summary-list {
+		padding-left: 18px;
+
+		li {
+			margin-bottom: 6px;
+		}
+	}
+
+	.adhd-onb-submit-toggle {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		font-weight: 400;
+		color: var(--text-color);
+		margin-top: 8px;
+
+		input {
+			margin-top: 4px;
+		}
+	}
+
+	.adhd-onb-pending {
+		margin-top: 10px;
+
+		ul {
+			padding-left: 18px;
+		}
+	}
+
+	.adhd-onb-footer {
+		display: flex;
+		gap: 10px;
+		margin-top: 20px;
+		padding-top: 14px;
+		border-top: 1px solid var(--border-color);
+	}
+
+	.has-error {
+		.form-control {
+			border-color: var(--red-500);
+		}
+	}
+
+	.adhd-field-error {
+		color: var(--red-600, var(--red-500));
+		font-size: 0.8rem;
+		margin-top: 2px;
+	}
+
+	// Decorative only: never used to decide whether a control is shown or usable.
+	&.adhd-mode-on {
+		.adhd-onb-step-label {
+			color: var(--primary);
+		}
+
+		.adhd-onb-progress {
+			accent-color: var(--adhd-primary, var(--primary));
+		}
+	}
+}
