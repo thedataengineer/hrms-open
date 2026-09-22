@@ -224,10 +224,15 @@ doc_events = {
 		"after_insert": [
 			"hrms.overrides.employee_master.update_job_applicant_and_offer",
 			"hrms.telemetry.on_milestone_insert",
+			"hrms.hr.journeys.on_employee_after_insert",
 		],
 		"on_trash": "hrms.overrides.employee_master.update_employee_transfer",
 		"after_delete": "hrms.overrides.employee_master.publish_update",
 	},
+	# ---- Journeys: a submitted life event can start a Journey from a matching template ----
+	"Employee Separation": {"on_submit": "hrms.hr.journeys.on_employee_separation_on_submit"},
+	"Employee Promotion": {"on_submit": "hrms.hr.journeys.on_employee_promotion_on_submit"},
+	"Employee Transfer": {"on_submit": "hrms.hr.journeys.on_employee_transfer_on_submit"},
 	"Project": {"validate": "hrms.controllers.employee_boarding_controller.update_employee_boarding_status"},
 	"Task": {"on_update": "hrms.controllers.employee_boarding_controller.update_task"},
 	# ---- Usage telemetry: recurring feature usage (see hrms/telemetry.py) ----
@@ -273,11 +278,13 @@ scheduler_events = {
 		"hrms.hr.doctype.shift_assignment.shift_assignment.mark_expired_shift_assignments_as_inactive",
 		"hrms.hr.doctype.job_opening.job_opening.close_expired_job_openings",
 		"hrms.telemetry.capture_daily_attendance_pulse",
+		"hrms.hr.journeys.daily",
 	],
 	"daily_long": [
 		"hrms.hr.doctype.leave_ledger_entry.leave_ledger_entry.process_expired_allocation",
 		"hrms.hr.utils.generate_leave_encashment",
 		"hrms.hr.utils.allocate_earned_leaves",
+		"hrms.hr.skills_cloud.scheduled_refresh_suggestions",
 	],
 	"weekly": ["hrms.controllers.employee_reminders.send_reminders_in_advance_weekly"],
 	"monthly": ["hrms.controllers.employee_reminders.send_reminders_in_advance_monthly"],
