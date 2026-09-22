@@ -1,0 +1,101 @@
+// Payroll Cycle Checklist (ADHD-057) styling. Layout mirrors erpnext/public/scss/adhd_mode.scss's
+// .adhd-month-end-checklist / .adhd-month-end-step (ADHD-012), reusing the same CSS variables so the page
+// looks consistent with the rest of Focus mode, but under its own class names since this lives in HRMS.
+
+.adhd-payroll-checklist {
+	h4 {
+		margin-bottom: 10px;
+	}
+
+	progress {
+		width: 100%;
+		margin: 6px 0 12px;
+	}
+}
+
+.adhd-payroll-selectors {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 12px;
+	margin-bottom: 14px;
+
+	label {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		font-size: var(--text-xs);
+		color: var(--text-muted);
+	}
+
+	select {
+		min-width: 140px;
+	}
+}
+
+.adhd-payroll-step {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 4px 8px;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid var(--border-color);
+
+	small {
+		grid-column: 2 / 4;
+		color: var(--text-muted);
+	}
+
+	&.is-complete label {
+		text-decoration: line-through;
+	}
+}
+
+.adhd-payroll-badge,
+.adhd-payroll-summary {
+	grid-column: 2 / 4;
+	font-size: var(--text-xs);
+}
+
+.adhd-payroll-badge {
+	font-weight: 600;
+
+	&.is-done {
+		color: var(--green-600);
+	}
+
+	&.is-pending {
+		color: var(--orange-600);
+	}
+
+	&.is-unknown,
+	&.is-no-access {
+		color: var(--text-muted);
+	}
+}
+
+.adhd-payroll-summary {
+	color: var(--text-muted);
+}
+
+.adhd-payroll-tick {
+	font-size: var(--text-lg);
+
+	&.is-done {
+		color: var(--green-600);
+	}
+
+	&.is-pending {
+		color: var(--text-muted);
+	}
+}
+
+// Motion is one of the things Focus mode is meant to calm; this checklist has none of its own, but keep
+// the same reduced-motion guard other Focus surfaces use in case a future revision adds any.
+@media (prefers-reduced-motion: reduce) {
+	.adhd-payroll-checklist,
+	.adhd-payroll-checklist * {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
