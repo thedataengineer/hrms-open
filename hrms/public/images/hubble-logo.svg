@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="118" height="118" viewBox="0 0 118 118">
+<title>Hubble</title>
+<rect width="118" height="118" rx="20" fill="#312E81"/>
+<path d="M43 64H75V76H43Z" fill="#FFC857"/>
+<path d="M26.5 32A8.5 8.5 0 1 1 43.5 32A8.5 8.5 0 1 1 26.5 32Z" fill="#FFFFFF"/>
+<path d="M74.5 32A8.5 8.5 0 1 1 91.5 32A8.5 8.5 0 1 1 74.5 32Z" fill="#FFFFFF"/>
+<path d="M26 94V55A9 9 0 0 1 44 55V94Z" fill="#FFFFFF"/>
+<path d="M74 94V55A9 9 0 0 1 92 55V94Z" fill="#FFFFFF"/>
+</svg>

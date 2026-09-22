@@ -1,19 +1,19 @@
 app_name = "hrms"
-app_title = "Frappe HR"
+app_title = "Hubble"
 app_publisher = "Frappe Technologies Pvt. Ltd."
-app_description = "Modern HR and Payroll Software"
+app_description = "Run your people, not your paperwork"
 app_email = "contact@frappe.io"
 app_license = "GNU General Public License (v3)"
 required_apps = ["frappe/erpnext"]
 source_link = "http://github.com/frappe/hrms"
-app_logo_url = "/assets/hrms/images/frappe-hr-logo.svg"
+app_logo_url = "/assets/hrms/images/hubble-logo.svg"
 app_home = "/desk/hr-setup"
 
 add_to_apps_screen = [
 	{
 		"name": "hrms",
-		"logo": "/assets/hrms/images/frappe-hr-logo.svg",
-		"title": "Frappe HR",
+		"logo": "/assets/hrms/images/hubble-logo.svg",
+		"title": "Hubble",
 		"route": app_home,
 		"has_permission": "hrms.hr.utils.check_app_permission",
 		"sequence_id": 2,

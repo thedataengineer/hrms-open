@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="471" height="118" viewBox="0 0 471 118">
+<title>Hubble</title>
+<rect width="118" height="118" rx="20" fill="#312E81"/>
+<path d="M43 64H75V76H43Z" fill="#FFC857"/>
+<path d="M26.5 32A8.5 8.5 0 1 1 43.5 32A8.5 8.5 0 1 1 26.5 32Z" fill="#FFFFFF"/>
+<path d="M74.5 32A8.5 8.5 0 1 1 91.5 32A8.5 8.5 0 1 1 74.5 32Z" fill="#FFFFFF"/>
+<path d="M26 94V55A9 9 0 0 1 44 55V94Z" fill="#FFFFFF"/>
+<path d="M74 94V55A9 9 0 0 1 92 55V94Z" fill="#FFFFFF"/>
+<g fill="#16162B">
+<path d="M156 24H170V94H156Z"/>
+<path d="M198 24H212V94H198Z"/>
+<path d="M169 53H199V65H169Z" fill="#312E81"/>
+<path d="M224 44H238V71A9 9 0 0 0 256 71V44H270V94H247A23 23 0 0 1 224 71Z"/>
+<path d="M282 24H296V94H282Z"/>
+<path fill-rule="evenodd" d="M282 44H305A25 25 0 0 1 305 94H282ZM296 56H305A13 13 0 0 1 305 82H296Z"/>
+<path d="M340 24H354V94H340Z"/>
+<path fill-rule="evenodd" d="M340 44H363A25 25 0 0 1 363 94H340ZM354 56H363A13 13 0 0 1 363 82H354Z"/>
+<path d="M398 24H412V94H398Z"/>
+<path fill-rule="evenodd" d="M468.45 80A25 25 0 1 1 470.68 73H433.63A13 13 0 0 0 452.93 80ZM434.47 63A13 13 0 0 1 457.53 63Z"/>
+</g>
+</svg>
