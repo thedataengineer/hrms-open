@@ -290,6 +290,9 @@ scheduler_events = {
 	"monthly": ["hrms.controllers.employee_reminders.send_reminders_in_advance_monthly"],
 }
 
+# RTB's Focus inbox asks each app for the documents waiting on the person (see erpnext/adhd/api.py)
+focus_urgent_items = ["hrms.hr.focus.urgent_items"]
+
 advance_payment_payable_doctypes = ["Leave Encashment", "Gratuity", "Employee Advance"]
 
 invoice_doctypes = ["Expense Claim"]
