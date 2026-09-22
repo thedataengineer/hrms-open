@@ -14,8 +14,18 @@ frappe.provide("erpnext.adhd");
 	const METHOD = "hrms.hr.services.adhd_leave_balance.get_leave_glance";
 	const DEBOUNCE_MS = 400;
 
+	// "Leave Balance and Receipt Checks" in Focus Settings, registered by adhd_focus_registrations.js and on by
+	// default. An RTB whose settings do not know the switch keeps the card on.
+	function aidsOn() {
+		const settings = erpnext.adhd.ADHDSettings;
+		const known = (erpnext.adhd.ADHD_FEATURES || []).some(
+			(feature) => feature.key === "hr_form_aids",
+		);
+		return !settings || !known || Boolean(settings.get("hr_form_aids"));
+	}
+
 	function isActive() {
-		return Boolean(frappe.boot && frappe.boot.adhd_mode);
+		return Boolean(frappe.boot && frappe.boot.adhd_mode) && aidsOn();
 	}
 
 	function esc(value) {
@@ -228,6 +238,16 @@ frappe.provide("erpnext.adhd");
 			removeCard(frm);
 		}
 	});
+
+	// Flipping the switch in Focus Settings changes the form on screen at once. `detail` is { key, value } for
+	// one switch and undefined for a reset, which can change all of them.
+	if (typeof $ === "function" && typeof document !== "undefined") {
+		$(document).on("adhd_setting_changed adhd_settings_reset", (_event, detail) => {
+			if (detail && detail.key && detail.key !== "hr_form_aids") return;
+			const frm = window.cur_frm;
+			if (frm && frm.doctype === "Leave Application") fetchAndRenderBalance(frm);
+		});
+	}
 
 	erpnext.adhd.LEAVE_BALANCE_METHOD = METHOD;
 	erpnext.adhd.renderLeaveBalanceCard = fetchAndRenderBalance;

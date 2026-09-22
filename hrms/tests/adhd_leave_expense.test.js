@@ -680,3 +680,130 @@ test("expense: no badges/summary at all when Focus Mode is off from the start", 
 	assert.equal(dom.panels.length, 0);
 	assert.equal(calls.length, 0);
 });
+
+// =================================================================================================
+// The "Leave Balance and Receipt Checks" switch in Focus Settings (registered by adhd_focus_registrations.js)
+// =================================================================================================
+
+// Focus Settings as adhd_settings.js exposes them: get() by key, and jQuery's document events when a switch
+// flips. `known` says whether the switch was registered at all (an older RTB has no registerFeature).
+function withSettings(sandbox, { on = true, known = true } = {}) {
+	const values = { hr_form_aids: on };
+	const listeners = [];
+	sandbox.document = {};
+	const dollar = sandbox.$;
+	sandbox.$ = (target) =>
+		target === sandbox.document
+			? {
+					on(events, handler) {
+						events.split(/\s+/).forEach((event) => listeners.push({ event, handler }));
+						return this;
+					},
+			  }
+			: dollar(target);
+	sandbox.erpnext.adhd.ADHD_FEATURES = known
+		? [{ key: "hr_form_aids", label: "Leave Balance and Receipt Checks" }]
+		: [];
+	sandbox.erpnext.adhd.ADHDSettings = {
+		get: (key) => Boolean(values[key]),
+		set(key, value) {
+			values[key] = Boolean(value);
+			listeners
+				.filter((item) => item.event === "adhd_setting_changed")
+				.forEach((item) => item.handler({}, { key, value: Boolean(value) }));
+		},
+		reset() {
+			values.hr_form_aids = true;
+			listeners
+				.filter((item) => item.event === "adhd_settings_reset")
+				.forEach((item) => item.handler({}));
+		},
+	};
+	return sandbox.erpnext.adhd.ADHDSettings;
+}
+
+const OK_BALANCE = () => ({
+	available: true,
+	state: "ok",
+	total_leaves: 12,
+	used: 2,
+	remaining: 10,
+	days: 3,
+});
+
+test("leave: the switch off in Focus Settings means no card and no server call, even with the mode on", async () => {
+	const dom = makeDom();
+	const { sandbox, registrations, calls } = makeSandbox({ dom, respond: OK_BALANCE });
+	withSettings(sandbox, { on: false });
+	loadModule("adhd_leave_application.js", sandbox);
+	handlerFor(registrations, "Leave Application", "refresh")(makeLeaveFrm(dom));
+	await wait(450);
+	assert.equal(dom.panels.length, 0);
+	assert.equal(calls.length, 0);
+});
+
+test("leave: flipping the switch while the form is open removes and restores the card at once", async () => {
+	const dom = makeDom();
+	const { sandbox, registrations, calls, window } = makeSandbox({ dom, respond: OK_BALANCE });
+	const settings = withSettings(sandbox, { on: true });
+	loadModule("adhd_leave_application.js", sandbox);
+	const frm = makeLeaveFrm(dom);
+	window.cur_frm = frm;
+	handlerFor(registrations, "Leave Application", "refresh")(frm);
+	await wait(450);
+	assert.equal(dom.panels.length, 1);
+
+	settings.set("hr_form_aids", false);
+	await wait(450);
+	assert.equal(dom.panels.length, 0, "off: the card goes");
+	const before = calls.length;
+	settings.set("pomodoro", false); // another switch changes nothing here
+	await wait(450);
+	assert.equal(calls.length, before);
+
+	settings.set("hr_form_aids", true);
+	await wait(450);
+	assert.equal(dom.panels.length, 1, "on again: the card is back");
+	settings.set("hr_form_aids", false);
+	await wait(450);
+	settings.reset(); // a reset turns every switch back to its default, and this one is on by default
+	await wait(450);
+	assert.equal(dom.panels.length, 1);
+});
+
+test("leave: an RTB whose settings do not know the switch keeps the card on", async () => {
+	const dom = makeDom();
+	const { sandbox, registrations } = makeSandbox({ dom, respond: OK_BALANCE });
+	withSettings(sandbox, { on: false, known: false });
+	loadModule("adhd_leave_application.js", sandbox);
+	handlerFor(registrations, "Leave Application", "refresh")(makeLeaveFrm(dom));
+	await wait(450);
+	assert.equal(dom.panels.length, 1);
+});
+
+test("expense: the switch off means no summary, no badges and no File fetch; on again restores them", async () => {
+	const dom = makeDom();
+	const { sandbox, registrations, calls, window } = makeSandbox({
+		dom,
+		metaByDoctype: { "Expense Claim Detail": EXPENSE_DETAIL_NO_ATTACH_FIELD },
+		respond: () => [],
+	});
+	const settings = withSettings(sandbox, { on: false });
+	loadModule("adhd_expense_claim.js", sandbox);
+	const frm = makeExpenseFrm(dom, [{ name: "row-1" }, { name: "row-2" }]);
+	window.cur_frm = frm;
+	handlerFor(registrations, "Expense Claim", "refresh")(frm);
+	await wait(450);
+	assert.equal(dom.panels.length, 0);
+	assert.equal(dom.totalBadges(), 0);
+	assert.equal(calls.length, 0);
+
+	settings.set("hr_form_aids", true);
+	await wait(450);
+	assert.equal(dom.panels.length, 1, "on: the summary appears");
+	assert.equal(calls.length, 1, "on: the attachments are fetched once");
+	settings.set("hr_form_aids", false);
+	await wait(450);
+	assert.equal(dom.panels.length, 0);
+	assert.equal(dom.totalBadges(), 0);
+});

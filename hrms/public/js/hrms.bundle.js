@@ -15,3 +15,4 @@ import "./skills/employee_skills.js";
 import "./adhd/adhd_leave_application.js";
 import "./adhd/adhd_expense_claim.js";
 import "./adhd/adhd_payroll_checklist.js";
+import "./adhd/adhd_focus_registrations.js"; // Hubble's forms and lists in RTB's Focus aids

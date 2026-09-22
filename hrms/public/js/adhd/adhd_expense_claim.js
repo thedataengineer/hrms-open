@@ -34,8 +34,18 @@ frappe.provide("erpnext.adhd");
 	const MAX_FILES = 100;
 	const ATTACH_FIELDTYPES = ["Attach", "Attach Image"];
 
+	// "Leave Balance and Receipt Checks" in Focus Settings, registered by adhd_focus_registrations.js and on by
+	// default. An RTB whose settings do not know the switch keeps the check on.
+	function aidsOn() {
+		const settings = erpnext.adhd.ADHDSettings;
+		const known = (erpnext.adhd.ADHD_FEATURES || []).some(
+			(feature) => feature.key === "hr_form_aids",
+		);
+		return !settings || !known || Boolean(settings.get("hr_form_aids"));
+	}
+
 	function isActive() {
-		return Boolean(frappe.boot && frappe.boot.adhd_mode);
+		return Boolean(frappe.boot && frappe.boot.adhd_mode) && aidsOn();
 	}
 
 	function esc(value) {
@@ -226,6 +236,16 @@ frappe.provide("erpnext.adhd");
 			removeAll(frm);
 		}
 	});
+
+	// Flipping the switch in Focus Settings changes the form on screen at once (see adhd_leave_application.js).
+	if (typeof $ === "function" && typeof document !== "undefined") {
+		$(document).on("adhd_setting_changed adhd_settings_reset", (_event, detail) => {
+			if (detail && detail.key && detail.key !== "hr_form_aids") return;
+			const frm = window.cur_frm;
+			if (frm && frm.doctype === "Expense Claim")
+				checkReceiptAttachments(frm, { forceFetch: false });
+		});
+	}
 
 	erpnext.adhd.EXPENSE_RECEIPT_FILE_METHOD = FILE_METHOD;
 	erpnext.adhd.checkExpenseReceiptAttachments = checkReceiptAttachments;
