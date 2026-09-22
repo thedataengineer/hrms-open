@@ -281,7 +281,9 @@ class TestAdhdLeaveBalance(unittest.TestCase):
 				"send_welcome_email": 0,
 			}
 		).insert(ignore_permissions=True)
-		self.assertEqual(user.roles, [])  # a plain user with no Employee-reading role
+		# another app on the bench may give every new user a role of its own (Suite adds "Suite User"); what
+		# this test needs is that none of them lets the person read an Employee
+		self.assertFalse(frappe.has_permission("Employee", "read", user=user.name))
 
 		frappe.set_user(user.name)
 		try:
