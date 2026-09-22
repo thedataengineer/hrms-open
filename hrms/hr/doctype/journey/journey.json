@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "autoname": "HR-JRN-.YYYY.-.#####",
+ "creation": "2026-09-21 09:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "journey_template",
+  "employee",
+  "journey_type",
+  "company",
+  "column_break_jrn_1",
+  "start_date",
+  "status",
+  "progress_percent",
+  "board_section",
+  "tasks_board",
+  "tasks_section",
+  "tasks",
+  "trigger_section",
+  "triggered_by_doctype",
+  "triggered_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "journey_template",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Journey Template",
+   "options": "Journey Template",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "search_index": 1,
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "journey_template.journey_type",
+   "fieldname": "journey_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Journey Type",
+   "options": "Onboarding\nOffboarding\nPromotion\nTransfer\nReturn from Leave\nCustom",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "employee.company",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_jrn_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "default": "Not Started",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Not Started\nIn Progress\nCompleted\nCancelled",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "progress_percent",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Progress",
+   "read_only": 1
+  },
+  {
+   "fieldname": "board_section",
+   "fieldtype": "Section Break",
+   "label": "Now / Next / Later / Done"
+  },
+  {
+   "fieldname": "tasks_board",
+   "fieldtype": "HTML",
+   "label": "Board",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "tasks_section",
+   "fieldtype": "Section Break",
+   "label": "All Tasks"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Table",
+   "label": "Tasks",
+   "options": "Journey Task"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "trigger_section",
+   "fieldtype": "Section Break",
+   "label": "Started By"
+  },
+  {
+   "fieldname": "triggered_by_doctype",
+   "fieldtype": "Link",
+   "label": "Triggered By (DocType)",
+   "no_copy": 1,
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "triggered_by",
+   "fieldtype": "Dynamic Link",
+   "label": "Triggered By",
+   "no_copy": 1,
+   "options": "triggered_by_doctype",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-09-21 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Journey",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "write": 1,
+   "role": "HR User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee",
+ "track_changes": 1
+}

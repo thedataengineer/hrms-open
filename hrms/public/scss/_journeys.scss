@@ -1,0 +1,191 @@
+// Feature A: Journeys. Calm, quiet styling: one panel on the Employee form, one board on the Journey
+// form. Not gated on Focus Mode (Journeys is a product feature), so these are not scoped to
+// `body.adhd-mode` — but the colours and spacing follow the same restrained tokens as the Focus layer.
+
+.journeys-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-bottom: 8px;
+	padding: 10px 16px;
+	border-bottom: 2px solid var(--border-color);
+	background: var(--subtle-fg);
+}
+
+.journeys-panel-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.journeys-panel-label {
+	color: var(--text-muted);
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.journeys-panel-body {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.journeys-empty {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: 0.8rem;
+}
+
+.journeys-row {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.journeys-row-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.journeys-status {
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+}
+
+.journeys-status-in-progress {
+	color: var(--blue-500);
+}
+
+.journeys-status-completed {
+	color: var(--green-500);
+}
+
+.journeys-status-cancelled {
+	color: var(--text-muted);
+}
+
+.journeys-progress {
+	height: 6px;
+	border-radius: 3px;
+	background: var(--control-bg);
+	overflow: hidden;
+}
+
+.journeys-progress-fill {
+	height: 100%;
+	background: var(--blue-500);
+	border-radius: 3px;
+	transition: width 0.2s ease;
+}
+
+.journeys-next {
+	color: var(--text-muted);
+	font-size: 0.78rem;
+}
+
+.journeys-due {
+	color: var(--text-light);
+}
+
+.journeys-done-note {
+	color: var(--text-light);
+	font-style: italic;
+}
+
+.journeys-start-btn {
+	flex-shrink: 0;
+}
+
+// --- Journey form board ---
+
+.journeys-board {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+@media (max-width: 900px) {
+	.journeys-board {
+		grid-template-columns: 1fr;
+	}
+}
+
+.journeys-col {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.journeys-col-head {
+	display: flex;
+	align-items: baseline;
+	gap: 6px;
+	color: var(--text-muted);
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.journeys-col-count {
+	color: var(--text-light);
+	font-weight: 400;
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+.journeys-col-body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.journeys-col-empty {
+	margin: 0;
+	color: var(--text-light);
+	font-size: 0.78rem;
+	font-style: italic;
+}
+
+.journeys-card {
+	padding: 10px 12px;
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+	background: var(--fg-color);
+	overflow-wrap: break-word;
+}
+
+.journeys-card-title {
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.journeys-card-desc {
+	margin-top: 4px;
+	color: var(--text-muted);
+	font-size: 0.78rem;
+}
+
+.journeys-card-meta {
+	margin-top: 6px;
+	color: var(--text-light);
+	font-size: 0.72rem;
+}
+
+.journeys-card-actions {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 8px;
+}

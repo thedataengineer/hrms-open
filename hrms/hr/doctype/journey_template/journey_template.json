@@ -1,0 +1,163 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "HR-JRN-TMPL-.#####",
+ "creation": "2026-09-21 09:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "journey_type",
+  "column_break_tmpl_1",
+  "trigger",
+  "send_reminders",
+  "disabled",
+  "applies_to_section",
+  "company",
+  "department",
+  "column_break_tmpl_2",
+  "designation",
+  "steps_section",
+  "steps"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1,
+   "translatable": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "journey_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Journey Type",
+   "options": "Onboarding\nOffboarding\nPromotion\nTransfer\nReturn from Leave\nCustom",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_tmpl_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Manual",
+   "description": "When this template starts a journey automatically. \"Manual\" means it only shows up in the \"Start a journey\" dialog.",
+   "fieldname": "trigger",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Trigger",
+   "options": "Manual\nEmployee Joined\nEmployee Separation\nEmployee Promotion\nEmployee Transfer",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "default": "0",
+   "description": "Remind an owner in-app (Notification Log) when their task is overdue. Off by default — never emails.",
+   "fieldname": "send_reminders",
+   "fieldtype": "Check",
+   "label": "Send Reminders"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "in_standard_filter": 1,
+   "label": "Disabled"
+  },
+  {
+   "fieldname": "applies_to_section",
+   "fieldtype": "Section Break",
+   "label": "Applies To"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "description": "Leave blank to apply to every department in the Company.",
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department (optional filter)",
+   "options": "Department"
+  },
+  {
+   "fieldname": "column_break_tmpl_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Leave blank to apply to every designation.",
+   "fieldname": "designation",
+   "fieldtype": "Link",
+   "label": "Designation (optional filter)",
+   "options": "Designation"
+  },
+  {
+   "fieldname": "steps_section",
+   "fieldtype": "Section Break",
+   "label": "Steps"
+  },
+  {
+   "fieldname": "steps",
+   "fieldtype": "Table",
+   "label": "Steps",
+   "options": "Journey Template Step"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-21 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Journey Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title",
+ "track_changes": 1
+}

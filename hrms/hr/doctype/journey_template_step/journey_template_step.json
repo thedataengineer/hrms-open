@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "creation": "2026-09-21 09:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "action",
+  "reference_doctype",
+  "column_break_step_1",
+  "owner_type",
+  "owner_role",
+  "owner_user",
+  "column_break_step_2",
+  "due_offset_days",
+  "depends_on",
+  "required",
+  "section_break_step_1",
+  "description"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Step",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "default": "Task",
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Action",
+   "options": "Task\nOpen a Document\nAsk a Question",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.action==\"Open a Document\"",
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Document Type to Open",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "column_break_step_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "default": "Employee's Manager",
+   "fieldname": "owner_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Owner",
+   "options": "Employee\nEmployee's Manager\nHR\nRole\nUser",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.owner_type==\"Role\"",
+   "fieldname": "owner_role",
+   "fieldtype": "Link",
+   "label": "Role",
+   "mandatory_depends_on": "eval:doc.owner_type==\"Role\"",
+   "options": "Role"
+  },
+  {
+   "depends_on": "eval:doc.owner_type==\"User\"",
+   "fieldname": "owner_user",
+   "fieldtype": "Link",
+   "label": "User",
+   "mandatory_depends_on": "eval:doc.owner_type==\"User\"",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_step_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "default": "0",
+   "description": "Days from the journey's start date. May be negative for steps that should happen before the start date.",
+   "fieldname": "due_offset_days",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Due (Days From Start)"
+  },
+  {
+   "description": "Exact title of another step in this template. This step will not open until that one is Done or Skipped.",
+   "fieldname": "depends_on",
+   "fieldtype": "Data",
+   "label": "Depends On (Step Title)"
+  },
+  {
+   "default": "1",
+   "fieldname": "required",
+   "fieldtype": "Check",
+   "label": "Required"
+  },
+  {
+   "fieldname": "section_break_step_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description / Question"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-21 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Journey Template Step",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1
+}
