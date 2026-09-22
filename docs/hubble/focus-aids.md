@@ -29,8 +29,10 @@ a Smart Inbox of what is due, and one-thing-at-a-time pages. Hubble takes part i
 
 ## How a person uses it
 
-Switch Focus Mode on in RTB. The pages are reachable by their routes (and are meant to get workspace
-shortcuts); the banners, list colours, drafts and inbox rows appear on their own. Every switch in Focus
+Switch Focus Mode on in RTB. The three pages sit in their module's sidebar and as a card on its home
+workspace: *Onboard New Employee* under Tenure, *Payroll Cycle Checklist* under Payroll, and *Talent
+Marketplace* under Performance (and in the Recruitment sidebar). The banners, list colours, drafts and
+inbox rows appear on their own. Every switch in Focus
 Settings takes effect on the form on screen at once. Nothing here blocks a save or a submit, and nothing
 writes to the server from a form aid: the wizard and the checklist are the only pages that create documents,
 and only when asked.
