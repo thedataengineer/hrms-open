@@ -8,7 +8,8 @@
  "engine": "InnoDB",
  "field_order": [
   "skill_name",
-  "description"
+  "description",
+  "aliases"
  ],
  "fields": [
   {
@@ -23,10 +24,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "description": "Comma separated alternate names the Skills Cloud matcher should also recognise for this skill (e.g. \"JS, ECMAScript\" for \"JavaScript\"). Matched at word boundaries, case-insensitive.",
+   "fieldname": "aliases",
+   "fieldtype": "Small Text",
+   "label": "Aliases"
   }
  ],
  "links": [],
- "modified": "2026-09-01 18:39:51.520758",
+ "modified": "2026-09-21 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Skill",

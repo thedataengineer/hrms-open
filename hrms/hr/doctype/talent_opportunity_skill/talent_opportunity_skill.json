@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "creation": "2026-09-21 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "skill",
+  "requirement",
+  "minimum_proficiency"
+ ],
+ "fields": [
+  {
+   "fieldname": "skill",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Skill",
+   "options": "Skill",
+   "reqd": 1
+  },
+  {
+   "default": "Required",
+   "fieldname": "requirement",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Requirement",
+   "options": "Required\nNice to have",
+   "reqd": 1
+  },
+  {
+   "description": "Out of 5. Leave blank if any level counts.",
+   "fieldname": "minimum_proficiency",
+   "fieldtype": "Rating",
+   "in_list_view": 1,
+   "label": "Minimum Proficiency"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-21 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Talent Opportunity Skill",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "ASC",
+ "states": []
+}

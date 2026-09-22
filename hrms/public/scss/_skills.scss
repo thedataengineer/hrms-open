@@ -1,0 +1,61 @@
+// Skills Cloud: the Employee form "Skills" section and the Talent Marketplace page.
+
+.skills-cloud-section {
+	.skills-cloud-suggestion {
+		background-color: var(--fg-color);
+
+		&:hover {
+			border-color: var(--gray-400);
+		}
+	}
+
+	.indicator-pill {
+		display: inline-block;
+	}
+}
+
+.talent-marketplace {
+	.opportunity-card {
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius);
+		padding: 14px 16px;
+		margin-bottom: 10px;
+		background-color: var(--fg-color);
+
+		&:hover {
+			border-color: var(--gray-400);
+		}
+
+		.opportunity-title {
+			font-weight: 600;
+		}
+
+		.opportunity-match {
+			font-size: var(--text-lg);
+			font-weight: 600;
+		}
+
+		.opportunity-why {
+			margin-top: 6px;
+
+			.indicator-pill {
+				margin: 0 6px 6px 0;
+			}
+		}
+	}
+
+	.candidate-card {
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius);
+		padding: 10px 14px;
+		margin-bottom: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.marketplace-empty {
+		padding: 40px 0;
+		text-align: center;
+	}
+}
